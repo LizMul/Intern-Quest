@@ -47,7 +47,19 @@ function App() {
   }
 
   function toggleJobStatus(id) {
-    setJobs((s) => s.map((j) => (j.id === id ? { ...j, status: j.status === 'Applied' ? 'Interviewing' : 'Applied' } : j)))
+    setJobs((s) => s.map((j) => {
+      if (j.id === id) {
+        const statuses = ['Applied', 'Interviewing', 'Accepted', 'Rejected']
+        const currentIndex = statuses.indexOf(j.status)
+        const nextStatus = statuses[(currentIndex + 1) % statuses.length]
+        return { ...j, status: nextStatus }
+      }
+      return j
+    }))
+  }
+
+  function updateJobStatus(id, newStatus) {
+    setJobs((s) => s.map((j) => (j.id === id ? { ...j, status: newStatus } : j)))
   }
 
   function editJob(id, newTitle, newCompany) {
@@ -58,10 +70,12 @@ function App() {
   const total = jobs.length
   const interviewingCount = jobs.filter((j) => j.status === 'Interviewing').length
   const appliedCount = jobs.filter((j) => j.status === 'Applied').length
+  const acceptedCount = jobs.filter((j) => j.status === 'Accepted').length
+  const rejectedCount = jobs.filter((j) => j.status === 'Rejected').length
 
   return (
     <>
-      <Header total={total} applied={appliedCount} interviewing={interviewingCount} />
+      <Header total={total} applied={appliedCount} interviewing={interviewingCount} accepted={acceptedCount} rejected={rejectedCount} />
       <main>
         <div className="stats-section">
           <div className="stat-box">
@@ -85,7 +99,7 @@ function App() {
               title={job.title}
               company={job.company}
               status={job.status}
-              onToggle={toggleJobStatus}
+              onToggle={updateJobStatus}
               onRemove={removeJob}
               onEdit={editJob}
             />

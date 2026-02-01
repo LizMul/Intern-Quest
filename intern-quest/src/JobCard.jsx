@@ -39,11 +39,20 @@ export default function JobCard({ id, title = 'Frontend Intern', company = 'Acme
           <h2 className="job-title">💼 {title}</h2>
           <p className="job-company">🏢 {company}</p>
           <div className="job-meta">
-            <span className={`job-status ${status === 'Interviewing' ? 'interview' : 'applied'}`}>{status === 'Applied' ? '✅ Applied' : '🎤 Interviewing'}</span>
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
+              <label style={{ fontWeight: '600', fontSize: '0.9rem' }}>Status:</label>
+              <select 
+                value={status} 
+                onChange={(e) => onToggle && onToggle(id, e.target.value)}
+                className="job-status-select"
+              >
+                <option value="Applied">✅ Applied</option>
+                <option value="Interviewing">🎤 Interviewing</option>
+                <option value="Accepted">🎉 Accepted</option>
+                <option value="Rejected">❌ Rejected</option>
+              </select>
+            </div>
             <div style={{ display: 'flex', gap: '0.5rem', marginTop: '0.5rem', flexWrap: 'wrap' }}>
-              <button className="job-button" onClick={() => onToggle && onToggle(id)}>
-                {status === 'Applied' ? '🎤 Interview' : '✅ Applied'}
-              </button>
               <button className="job-edit-btn" onClick={startEdit}>✏️ Edit</button>
               <button className="job-remove" onClick={() => onRemove && onRemove(id)}>🗑️ Remove</button>
             </div>
