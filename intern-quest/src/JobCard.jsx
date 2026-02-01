@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 
-export default function JobCard({ id, title = 'Frontend Intern', company = 'Acme Co.', status = 'Applied', onToggle, onRemove, onEdit }) {
+export default function JobCard({ id, title = 'Frontend Intern', company = 'Acme Co.', status = 'Applied', notes = '', onToggle, onRemove, onEdit, onNotesChange }) {
   const [editing, setEditing] = useState(false)
   const [editTitle, setEditTitle] = useState(title)
   const [editCompany, setEditCompany] = useState(company)
+  const [showNotes, setShowNotes] = useState(false)
+  const [editNotes, setEditNotes] = useState(notes)
 
   function startEdit() {
     setEditTitle(title)
@@ -38,6 +40,7 @@ export default function JobCard({ id, title = 'Frontend Intern', company = 'Acme
         <>
           <h2 className="job-title">💼 {title}</h2>
           <p className="job-company">🏢 {company}</p>
+          {notes && <p className="job-notes">📝 {notes}</p>}
           <div className="job-meta">
             <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem', marginBottom: '0.5rem' }}>
               <label style={{ fontWeight: '600', fontSize: '0.9rem' }}>Status:</label>
@@ -54,8 +57,23 @@ export default function JobCard({ id, title = 'Frontend Intern', company = 'Acme
             </div>
             <div style={{ display: 'flex', gap: '0.5rem', marginTop: '0.5rem', flexWrap: 'wrap' }}>
               <button className="job-edit-btn" onClick={startEdit}>✏️ Edit</button>
+              <button className="job-notes-btn" onClick={() => setShowNotes(!showNotes)}>📝 Notes</button>
               <button className="job-remove" onClick={() => onRemove && onRemove(id)}>🗑️ Remove</button>
             </div>
+            {showNotes && (
+              <div style={{ marginTop: '0.75rem', width: '100%' }}>
+                <textarea 
+                  value={editNotes}
+                  onChange={(e) => {
+                    setEditNotes(e.target.value)
+                    onNotesChange && onNotesChange(id, e.target.value)
+                  }}
+                  placeholder="Add notes about this job (salary, interview feedback, etc.)"
+                  className="job-notes-input"
+                  rows="3"
+                />
+              </div>
+            )}
           </div>
         </>
       )}
