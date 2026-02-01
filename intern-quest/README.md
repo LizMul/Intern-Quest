@@ -1,4 +1,4 @@
-# Intern Quest — Quick & Fun Guide
+# Intern Quest  Quick & Fun Guide
 
 Welcome to *Intern Quest*, your tiny, friendly job-application tracker.
 
@@ -32,7 +32,5 @@ Files you might edit next
 - `src/App.jsx` — where the list and form live.
 - `src/JobCard.jsx` — card UI and actions (edit/remove/toggle).
 - `src/App.css` — tweak colors and spacing here.
-
-Want me to make this README the main `README.md` and add a screenshot? Say "yes" and I'll update it.
 
 Have fun — Liza! 🚀
