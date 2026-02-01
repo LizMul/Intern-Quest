@@ -4,7 +4,7 @@ A simple, friendly job-application tracker to help you stay organized during you
 
 ## Try It Now!
 
-**[Launch Intern Quest]lizmul.github.io/Intern-Quest/** — No installation needed!
+**[Launch Intern Quest](lizmul.github.io/Intern-Quest/)** — No installation needed!
 
 ## Features
 
