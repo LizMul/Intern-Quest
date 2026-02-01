@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
 
 export default function JobCard({ id, title = 'Frontend Intern', company = 'Acme Co.', status = 'Applied', notes = '', onToggle, onRemove, onEdit, onNotesChange }) {
   const [editing, setEditing] = useState(false)

@@ -1,24 +1,14 @@
-# Intern Quest  Quick & Fun Guide
+# Intern Quest 🎯
 
-Welcome to *Intern Quest*, your tiny, friendly job-application tracker.
+A simple, friendly job-application tracker to help you stay organized during your internship search.
 
-Get started (super quick)
+## Try It Now!
 
-1. Install dependencies:
+**[Launch Intern Quest](lizmul.github.io/Intern-Quest/)** — No installation needed!
 
-```bash
-npm install
-```
+## Features
 
-2. Start the app locally:
-
-```bash
-npm run dev
-```
-
-3. Open your browser: http://localhost:5173/
-
-What you can do
+Track your applications with ease
 
 - Add a job using the form (title + company).
 - Click "Edit" to change title or company.
@@ -26,6 +16,24 @@ What you can do
 - Click "Remove" to delete a job.
 
 Everything you add is saved in your browser so you can close the tab and come back.
+
+## Local Development
+
+Want to run it locally or make changes?
+
+1. Install dependencies:
+   ```bash
+   npm install
+   ```
+
+2. Start the development server:
+   ```bash
+   npm run dev
+   ```
+
+3. Open your browser at: http://localhost:5173/
+
+## Code Structure
 
 Files you might edit next
 

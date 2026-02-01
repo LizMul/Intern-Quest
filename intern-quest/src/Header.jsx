@@ -1,5 +1,3 @@
-import React from 'react'
-
 export default function Header({ total = 0, applied = 0, interviewing = 0, accepted = 0, rejected = 0 }) {
   return (
     <header className="app-header">

@@ -4,7 +4,6 @@ import Header from './Header'
 import JobCard from './JobCard'
 
 function App() {
-  const [count, setCount] = useState(0)
   const [jobs, setJobs] = useState(() => {
     try {
       const saved = localStorage.getItem('jobs')
@@ -38,25 +37,12 @@ function App() {
     if (!title.trim() || !company.trim()) return
     const newJob = { id: Date.now(), title: title.trim(), company: company.trim(), status: 'Applied', notes: '' }
     setJobs((s) => [newJob, ...s])
-    setCount((c) => c + 1)
     setTitle('')
     setCompany('')
   }
 
   function removeJob(id) {
     setJobs((s) => s.filter((j) => j.id !== id))
-  }
-
-  function toggleJobStatus(id) {
-    setJobs((s) => s.map((j) => {
-      if (j.id === id) {
-        const statuses = ['Applied', 'Interviewing', 'Accepted', 'Rejected']
-        const currentIndex = statuses.indexOf(j.status)
-        const nextStatus = statuses[(currentIndex + 1) % statuses.length]
-        return { ...j, status: nextStatus }
-      }
-      return j
-    }))
   }
 
   function updateJobStatus(id, newStatus) {
@@ -88,19 +74,13 @@ function App() {
   const acceptedCount = jobs.filter((j) => j.status === 'Accepted').length
   const rejectedCount = jobs.filter((j) => j.status === 'Rejected').length
 
-  // Calculate statistics
   const acceptanceRate = total > 0 ? Math.round((acceptedCount / total) * 100) : 0
-  const rejectionRate = total > 0 ? Math.round((rejectedCount / total) * 100) : 0
 
   return (
     <>
       <Header total={total} applied={appliedCount} interviewing={interviewingCount} accepted={acceptedCount} rejected={rejectedCount} />
       <main>
         <div className="stats-section">
-          <div className="stat-box">
-            <div className="stat-number">🚀 {count}</div>
-            <div className="stat-label">Jobs Added</div>
-          </div>
           <div className="stat-box">
             <div className="stat-number">✅ {acceptanceRate}%</div>
             <div className="stat-label">Success Rate</div>
