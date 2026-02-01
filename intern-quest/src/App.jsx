@@ -37,6 +37,7 @@ function App() {
     if (!title.trim() || !company.trim()) return
     const newJob = { id: Date.now(), title: title.trim(), company: company.trim(), status: 'Applied' }
     setJobs((s) => [newJob, ...s])
+    setCount((c) => c + 1)
     setTitle('')
     setCompany('')
   }
@@ -62,12 +63,18 @@ function App() {
     <>
       <Header total={total} applied={appliedCount} interviewing={interviewingCount} />
       <main>
-        <h3>Jobs</h3>
+        <div className="stats-section">
+          <div className="stat-box">
+            <div className="stat-number">🚀 {count}</div>
+            <div className="stat-label">Jobs Added</div>
+          </div>
+        </div>
+        <h3>📋 Your Applications</h3>
 
         <form className="job-form" onSubmit={addJob}>
-          <input placeholder="Job title" value={title} onChange={(e) => setTitle(e.target.value)} />
-          <input placeholder="Company" value={company} onChange={(e) => setCompany(e.target.value)} />
-          <button type="submit">Add Job</button>
+          <input placeholder="🧑‍💼 Job title" value={title} onChange={(e) => setTitle(e.target.value)} />
+          <input placeholder="🏢 Company" value={company} onChange={(e) => setCompany(e.target.value)} />
+          <button type="submit">✨ Add Job</button>
         </form>
 
         <div className="jobs-list">
@@ -85,15 +92,6 @@ function App() {
           ))}
         </div>
       </main>
-      {/* Removed external Vite/React logos for a cleaner app UI */}
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
       <footer className="app-footer">
         <div className="footer-name">Liza Multani</div>
         <div className="footer-guide">
